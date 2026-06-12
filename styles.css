@@ -1,0 +1,54 @@
+/* ==========================================================================
+   BIKE SHOP HUB - CUSTOM INTERFACE MOBILE STYLING
+   ========================================================================== */
+
+/* Core Mobile Viewport Defenses */
+html, body {
+    font-size: 16px; 
+    -webkit-text-size-adjust: 100%;       /* Prevents iOS from auto-sizing text */
+    -webkit-tap-highlight-color: transparent; /* Removes the ugly blue box highlight on mobile tap */
+    overscroll-behavior-y: contain;       /* Prevents the rubber-band pull-to-refresh glitch */
+}
+
+/* Fix for smooth rendering and non-selectable text elements */
+body {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Custom Scrollbar System for Data Grid Horizontal Overflow */
+.custom-scroll::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+    background: #0f172a; /* Slate 900 matched tracking color */
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #475569; /* Slate 600 tactile scroll slider bar */
+    border-radius: 6px;
+}
+
+/* Touch Accessibility Polish */
+button, 
+tr.hover\:bg-slate-800\/40 {
+    touch-action: manipulation; /* Remaps tap events to eliminate the native 300ms mobile browser delay */
+}
+
+/* Smooth Fade-In Animations for Tab Swapping */
+.animate-fade-in {
+    animation: fadeIn 0.15s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(2px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
