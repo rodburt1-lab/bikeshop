@@ -1,74 +1,45 @@
 /* ==========================================================================
-   BIKE SHOP HUB - MOBILE ACCESSIBILITY ONLY SPECIFICATION
+   FORCE PACKED MOBILE GRID VIEW OVERRIDES FOR PHONE SCREENS
    ========================================================================== */
-
-/* Core Mobile Viewport Defenses */
-html, body {
-    font-size: 18px; /* Bumped base text size up from 16px for quick reading on-site */
-    -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: transparent;
-    overscroll-behavior-y: contain; 
-}
-
-/* Eliminate accidental text selection highlight strings when tapping categories */
-body {
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-/* Custom Scrollbar System for Data Grid Overflow */
-.custom-scroll::-webkit-scrollbar {
-    width: 10px; /* Thicker track to make scrolling data grids easier with a thumb */
-    height: 10px;
-}
-
-.custom-scroll::-webkit-scrollbar-track {
-    background: #0f172a;
-}
-
-.custom-scroll::-webkit-scrollbar-thumb {
-    background: #475569;
-    border-radius: 8px;
-    border: 2px solid #0f172a; /* Creates padding space around the thumb track */
-}
-
-/* Touch Target Accessibility Optimization */
-button {
-    touch-action: manipulation; /* Kills the 300ms delay to make clicks feel snappy */
-    min-height: 48px;           /* Strict physical minimum threshold for finger taps */
-}
-
-/* Data Table Row Expansion & Polish */
-tr {
-    height: 56px; /* Forces a taller row layout so items don't look squashed with larger text */
-}
-
-td, th {
-    padding-top: 14px !important;
-    padding-bottom: 14px !important;
-    font-size: 16px !important; /* Locks spreadsheet numerical grid text at highly legible scale */
-    white-space: nowrap;        /* Keeps data points from wrapping into ugly vertical text */
-}
-
-/* Maximize category column breathing room without breaking layout constraint boundaries */
-td:first-child {
-    max-width: 180px !important; /* Tight truncation bounds to force data columns onto the phone screen */
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Smooth Navigation Animations */
-.animate-fade-in {
-    animation: fadeIn 0.12s ease-out forwards;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(2px);
+@media screen and (max-width: 640px) {
+    /* Prevent the browser or parent frame from inflating text sizes automatically */
+    html, body, table, tr, td, th {
+        -webkit-text-size-adjust: none !important;
+        text-size-adjust: none !important;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    /* Force the data table to lock into absolute structural percentages */
+    table {
+        table-layout: fixed !important;
+        width: 100% !important;
+    }
+
+    /* Column Width Allocations */
+    th:nth-child(1), td:nth-child(1) { width: 34% !important; text-align: left !important; padding-left: 4px !important; } /* Category Name */
+    th:nth-child(2), td:nth-child(2) { width: 17% !important; text-align: right !important; } /* MTD */
+    th:nth-child(3), td:nth-child(3) { width: 17% !important; text-align: right !important; } /* VAR */
+    th:nth-child(4), td:nth-child(4) { width: 15% !important; text-align: right !important; } /* LY */
+    th:nth-child(5), td:nth-child(5) { width: 17% !important; text-align: right !important; padding-right: 4px !important; } /* Margin */
+
+    /* Force micro text sizes and eliminate padding so elements can't overlap or distort */
+    th {
+        font-size: 10px !important;
+        padding: 4px 1px !important;
+        letter-spacing: -0.05em !important;
+    }
+
+    td {
+        font-size: 11px !important;
+        padding: 6px 1px !important;
+        letter-spacing: -0.03em !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    /* Shrink down status or stockout alert badges so they don't break row spacing */
+    td span {
+        font-size: 8px !important;
+        padding: 0 1px !important;
     }
 }
